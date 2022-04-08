@@ -1,0 +1,8 @@
+<resources>
+    <string name="empty">  </string>
+    <string name="app_name">Prueba Ceiba</string>
+    <string name="action_settings">Settings</string>
+    <string name="user_fragment_label">Prueba de Ingreso - user</string>
+    <string name="post_fragment_label">Prueba de Ingreso - post</string>
+    <string name="buscar_usuario">Buscar usuario</string>
+</resources>
