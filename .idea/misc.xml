@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_post.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.315625" />
+        <entry key="app/src/main/res/layout/item_user.xml" value="0.45" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.315625" />
       </map>
     </option>
