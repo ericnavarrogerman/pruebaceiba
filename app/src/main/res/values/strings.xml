@@ -6,4 +6,7 @@
     <string name="post_fragment_label">Prueba de Ingreso - post</string>
     <string name="buscar_usuario">Buscar usuario</string>
     <string name="ver_publicaciones">VER PUBLICACIONES</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cargando">Cargando por favor espere.</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

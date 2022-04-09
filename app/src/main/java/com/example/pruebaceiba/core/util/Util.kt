@@ -3,13 +3,18 @@ package com.example.pruebaceiba.core
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.example.pruebaceiba.R
+import com.example.pruebaceiba.core.util.Dialog
+import com.example.pruebaceiba.core.util.ProgressDialog
 import com.google.android.material.snackbar.Snackbar
 
 
-fun View.visible(status:Boolean){
-    this.visibility = if (status) View.VISIBLE else View.GONE
-}
+var View.visible: Boolean
+    get() = visibility == View.VISIBLE
+    set(value) {
+        visibility = if(value) View.VISIBLE else View.GONE
+    }
 
 fun Fragment.notifyErrorWithAction(
     message: String,
@@ -21,4 +26,39 @@ fun Fragment.notifyErrorWithAction(
     snackBar.setActionTextColor(ContextCompat.getColor(this.requireContext(), R.color.green_primary))
     snackBar.show()
 
+}
+
+fun Fragment?.showDialog(
+    subTitle: String = "",
+    message: String = "",
+    textBtnOK:  Int = R.string.aceptar,
+    textBtnCancel: Int = R.string.empty,
+    iconDrawable: Int = R.drawable.ic_info,
+    showCancelBtn:Boolean=false,
+    onClickCancel: () -> Unit = {},
+    onClickOK: () -> Unit = {}
+): Dialog {
+    val dialog = Dialog()
+    dialog.model = Dialog.Model(subTitle, message, textBtnOK, textBtnCancel, iconDrawable,showCancelBtn, onClickCancel, onClickOK)
+    this?.let {
+        dialog.show(it.childFragmentManager, Dialog::class.java.name)
+    }
+    return dialog
+}
+
+
+fun Fragment?.showProgressDialog(): ProgressDialog {
+    val dialog = ProgressDialog()
+    this?.let { dialog.show(it.childFragmentManager, ProgressDialog::class.java.name) }
+    return dialog
+}
+
+fun Fragment?.closeProgressDialog() {
+    val progressDialog = this?.childFragmentManager?.findFragmentByTag(ProgressDialog::class.java.name)
+    if (progressDialog is ProgressDialog) {
+        try {
+            progressDialog.dismissAllowingStateLoss()
+        } catch (ex: Exception) {
+        }
+    }
 }

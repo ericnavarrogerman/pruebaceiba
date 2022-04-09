@@ -9,6 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.pruebaceiba.R
+import com.example.pruebaceiba.core.closeProgressDialog
+import com.example.pruebaceiba.core.showDialog
+import com.example.pruebaceiba.core.showProgressDialog
 import com.example.pruebaceiba.core.visible
 import com.example.pruebaceiba.feature.user.ui.adapters.UserAdapter
 import com.example.pruebaceiba.databinding.FragmentUserBinding
@@ -37,6 +40,7 @@ class UsersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.fragment = this
 
         var list:List<ItemUser> = arrayListOf(
@@ -51,7 +55,7 @@ class UsersFragment : Fragment() {
             )
 
         adapter = UserAdapter(::goToPostWithUserId) {
-            binding.textViewListEmpty.visible(it)
+            binding.textViewListEmpty.visible = it
         }.apply {
                 setData(list)
             }
@@ -64,6 +68,7 @@ class UsersFragment : Fragment() {
 
     fun textChange(s:CharSequence,i:Int,j:Int,k:Int){
             adapter.setWordSearch(s.toString())
+
     }
 
 
@@ -77,5 +82,7 @@ class UsersFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
 
