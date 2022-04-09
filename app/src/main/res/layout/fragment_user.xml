@@ -6,7 +6,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.example.pruebaceiba.ui.UsersFragment" />
+            type="com.example.pruebaceiba.feature.user.ui.views.UsersFragment" />
 
     </data>
 

@@ -1,4 +1,4 @@
-package com.example.pruebaceiba.ui.adapter
+package com.example.pruebaceiba.feature.user.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pruebaceiba.R
-import com.example.pruebaceiba.model.ItemUser
+import com.example.pruebaceiba.feature.user.ui.models.ItemUser
 
 class UserAdapter(var actionClic:(Int)->Unit, var actionListEmpty:(Boolean)->Unit):RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 

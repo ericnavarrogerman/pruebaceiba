@@ -1,4 +1,4 @@
-package com.example.pruebaceiba.ui
+package com.example.pruebaceiba
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.pruebaceiba.R
 import com.example.pruebaceiba.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.pruebaceiba.ui.adapter
+package com.example.pruebaceiba.feature.post.ui.adapters
 
 import android.graphics.Color
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pruebaceiba.model.ItemPost
+import com.example.pruebaceiba.feature.post.ui.models.ItemPost
 
 class PostAdapter(var list: List<ItemPost> = ArrayList()): RecyclerView.Adapter<PostAdapter.ViewHolder>() {
 
@@ -39,7 +39,7 @@ class PostAdapter(var list: List<ItemPost> = ArrayList()): RecyclerView.Adapter<
         })
     })
 
-    override fun onBindViewHolder(holder: PostAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.title.text = list[position].title
         holder.body.text = list[position].body

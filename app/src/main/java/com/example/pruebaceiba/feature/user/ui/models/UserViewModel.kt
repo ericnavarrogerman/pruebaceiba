@@ -1,4 +1,4 @@
-package com.example.pruebaceiba.ui.viewmodels
+package com.example.pruebaceiba.feature.user.ui.models
 
 import androidx.lifecycle.ViewModel
 

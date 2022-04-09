@@ -1,4 +1,4 @@
-package com.example.pruebaceiba.ui
+package com.example.pruebaceiba.feature.user.ui.views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,12 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.pruebaceiba.R
-import com.example.pruebaceiba.ui.adapter.UserAdapter
+import com.example.pruebaceiba.core.visible
+import com.example.pruebaceiba.feature.user.ui.adapters.UserAdapter
 import com.example.pruebaceiba.databinding.FragmentUserBinding
-import com.example.pruebaceiba.model.ItemUser
-import com.example.pruebaceiba.ui.viewmodels.PostViewModel
-import com.example.pruebaceiba.ui.viewmodels.UserViewModel
-
+import com.example.pruebaceiba.feature.user.ui.models.ItemUser
+import com.example.pruebaceiba.feature.user.ui.models.UserViewModel
 
 class UsersFragment : Fragment() {
 
@@ -40,7 +39,8 @@ class UsersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.fragment = this
 
-        var list:List<ItemUser> = arrayListOf(ItemUser("eric","3104113735", "eric@gmail.com",1),
+        var list:List<ItemUser> = arrayListOf(
+            ItemUser("eric","3104113735", "eric@gmail.com",1),
             ItemUser("arelis","3104113735", "eric@gmail.com",2),
             ItemUser("libardo","3104113735", "eric@gmail.com",3),
             ItemUser("rosmira","3104113735", "eric@gmail.com",4),
@@ -79,7 +79,3 @@ class UsersFragment : Fragment() {
     }
 }
 
-
- fun View.visible(status:Boolean){
-     this.visibility = if (status) View.VISIBLE else View.GONE
- }
