@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pruebaceiba.R
 import com.example.pruebaceiba.feature.user.ui.models.ItemUser
 
-class UserAdapter(var actionClic:(Int)->Unit, var actionListEmpty:(Boolean)->Unit):RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+class UserAdapter(var actionClic:(ItemUser)->Unit, var actionListEmpty:(Boolean)->Unit):RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
 
     var all:List<ItemUser> = ArrayList()
@@ -27,7 +27,7 @@ class UserAdapter(var actionClic:(Int)->Unit, var actionListEmpty:(Boolean)->Uni
         holder.name.text = filterList[position].name
         holder.phone.text = filterList[position].phoneNumber
         holder.email.text = filterList[position].email
-        holder.button.setOnClickListener { actionClic(filterList[position].id) }
+        holder.button.setOnClickListener { actionClic(filterList[position]) }
     }
 
 

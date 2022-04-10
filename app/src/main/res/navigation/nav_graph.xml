@@ -10,15 +10,9 @@
         android:name="com.example.pruebaceiba.feature.user.ui.views.UsersFragment"
         android:label="@string/user_fragment_label"
         tools:layout="@layout/fragment_user">
-
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" >
-            <argument
-                android:name="userId"
-                app:argType="integer"
-                android:defaultValue="0" />
-        </action>
+            app:destination="@id/SecondFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -30,8 +24,7 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
         <argument
-            android:name="userId"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:name="user"
+            app:argType="com.example.pruebaceiba.feature.user.ui.models.ItemUser" />
     </fragment>
 </navigation>

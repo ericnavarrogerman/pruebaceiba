@@ -17,7 +17,9 @@ import com.example.pruebaceiba.feature.user.ui.adapters.UserAdapter
 import com.example.pruebaceiba.databinding.FragmentUserBinding
 import com.example.pruebaceiba.feature.user.ui.models.ItemUser
 import com.example.pruebaceiba.feature.user.ui.models.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UsersFragment : Fragment() {
 
     private var _binding: FragmentUserBinding? = null
@@ -33,49 +35,50 @@ class UsersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user,container,false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user, container, false)
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        model.fecthDataFromServer()
         binding.fragment = this
 
-        var list:List<ItemUser> = arrayListOf(
-            ItemUser("eric","3104113735", "eric@gmail.com",1),
-            ItemUser("arelis","3104113735", "eric@gmail.com",2),
-            ItemUser("libardo","3104113735", "eric@gmail.com",3),
-            ItemUser("rosmira","3104113735", "eric@gmail.com",4),
-            ItemUser("german","3104113735", "eric@gmail.com",5),
-            ItemUser("karina","3104113735", "eric@gmail.com",6),
-            ItemUser("andrea","3104113735", "eric@gmail.com",7),
-            ItemUser("marcelo","3104113735", "eric@gmail.com",8)
-            )
 
         adapter = UserAdapter(::goToPostWithUserId) {
             binding.textViewListEmpty.visible = it
-        }.apply {
-                setData(list)
-            }
+        }
+
         binding.list.adapter = adapter
 
 
+        model.result.observe(viewLifecycleOwner) {
+
+                if (it.isLoading) showProgressDialog() else closeProgressDialog()
+                if (it.showError) showDialog(
+                    subTitle = "Ha ocurrido un error al descargar los datos.",
+                    message = it.error,
+                    iconDrawable = R.drawable.ic_error,
+                    textBtnCancel = R.string.cerrar,
+                    textBtnOK = R.string.reintentar
+                ) { model.fecthDataFromServer() }
+                if (it.data.isNotEmpty()) adapter.setData(it.data)
+
+        }
 
     }
 
 
-    fun textChange(s:CharSequence,i:Int,j:Int,k:Int){
-            adapter.setWordSearch(s.toString())
+    fun textChange(s: CharSequence, i: Int, j: Int, k: Int) {
+        adapter.setWordSearch(s.toString())
 
     }
 
 
-
-    fun goToPostWithUserId(userId:Int){
+    fun goToPostWithUserId(user: ItemUser) {
         findNavController()
-            .navigate(UsersFragmentDirections.actionFirstFragmentToSecondFragment(userId))
+            .navigate(UsersFragmentDirections.actionFirstFragmentToSecondFragment(user))
     }
 
     override fun onDestroyView() {

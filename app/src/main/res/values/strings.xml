@@ -9,4 +9,6 @@
     <string name="aceptar">Aceptar</string>
     <string name="cargando">Cargando por favor espere.</string>
     <string name="cancelar">Cancelar</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="reintentar">Reintentar</string>
 </resources>

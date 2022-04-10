@@ -23,3 +23,25 @@ abstract class UseCase<in TParam, out TResult>(
 
     protected abstract suspend fun performAction(param: TParam): Flow<Result<TResult>>
 }
+
+
+
+
+
+abstract class UseCaseWithoutParams<out TResult>(
+    private val exceptionHandler: IExceptionHandler,
+    private val dispatcher: CoroutineDispatcher
+) {
+
+    @ExperimentalCoroutinesApi
+    @Suppress("TooGenericExceptionCaught")
+    suspend operator fun invoke() =
+        performAction()
+            .catch { exception ->
+                exceptionHandler.handle(exception)
+                emit(Result.Failure(exception))
+            }
+            .flowOn(dispatcher)
+
+    protected abstract suspend fun performAction(): Flow<Result<TResult>>
+}
