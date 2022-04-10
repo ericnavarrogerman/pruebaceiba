@@ -51,17 +51,20 @@ class PostFragment : Fragment() {
 
         model.result.observe(viewLifecycleOwner){
 
-            if (it.isLoading) showProgressDialog() else closeProgressDialog()
-            if (it.showError) showDialog(
-                subTitle = "Ha ocurrido un error al descargar los datos.",
-                message = it.error,
-                iconDrawable = R.drawable.ic_error,
-                textBtnCancel = R.string.cerrar,
-                textBtnOK = R.string.reintentar,
-                showCancelBtn = true
-            ){model.getAllPostByWeb(user.id)}
-            if (it.data.isNotEmpty()) binding.list.adapter = PostAdapter(it.data)
-
+            if (it!=null) {
+                if (it.isLoading) showProgressDialog() else closeProgressDialog()
+                if (it.showError) showDialog(
+                    subTitle = "Ha ocurrido un error al descargar los datos.",
+                    message = it.error,
+                    iconDrawable = R.drawable.ic_error,
+                    textBtnCancel = R.string.cerrar,
+                    textBtnOK = R.string.reintentar,
+                    showCancelBtn = true
+                ) { model.getAllPostByWeb(user.id) ;closeProgressDialog()}
+                if (it.data.isNotEmpty()) binding.list.adapter = PostAdapter(it.data)
+            }else{
+                model.getAllPostByWeb(user.id)
+            }
 
         }
 

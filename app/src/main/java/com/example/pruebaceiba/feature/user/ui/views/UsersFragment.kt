@@ -55,16 +55,20 @@ class UsersFragment : Fragment() {
 
         model.result.observe(viewLifecycleOwner) {
 
-                if (it.isLoading) showProgressDialog() else closeProgressDialog()
-                if (it.showError) showDialog(
-                    subTitle = "Ha ocurrido un error al descargar los datos.",
-                    message = it.error,
-                    iconDrawable = R.drawable.ic_error,
-                    textBtnCancel = R.string.cerrar,
-                    textBtnOK = R.string.reintentar
-                ) { model.fecthDataFromServer() }
-                if (it.data.isNotEmpty()) adapter.setData(it.data)
 
+                if (it!=null) {
+                    if (it.isLoading) showProgressDialog() else closeProgressDialog()
+                    if (it.showError) showDialog(
+                        subTitle = "Ha ocurrido un error al descargar los datos.",
+                        message = it.error,
+                        iconDrawable = R.drawable.ic_error,
+                        textBtnCancel = R.string.cerrar,
+                        textBtnOK = R.string.reintentar
+                    ) { model.fecthDataFromServer();closeProgressDialog() }
+                    if (it.data.isNotEmpty()) adapter.setData(it.data)
+                }else{
+                    model.fecthDataFromServer()
+                }
         }
 
     }
